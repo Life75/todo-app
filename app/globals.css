@@ -1,26 +1,24 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* --- Light Mode (Standard) --- */
+  --color-background: #ffffff;      /* Pure White */
+  --color-foreground: #000000;      /* Dark Black Text */
+  
+  --color-secondary: #f3f4f6;       /* Light Gray (cards/sidebar) */
+  --color-accent: #e7b866;          /* Your Honey Orange */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  .dark {
+    /* --- Dark Mode Overrides --- */
+    --color-background: #000000;    /* Dark Background */
+    --color-foreground: #ffffff;    /* White Text */
+    
+    --color-secondary: #1f2937;     /* Light Gray for Cards (Tailwind Gray-800) */
+    --color-accent: #a855f7;        /* Purple Accent (Tailwind Purple-500) */
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
