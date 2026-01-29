@@ -1,9 +1,5 @@
-export default function Home() {
-  return (
-    <div className="">
-      <main className="">
-        Hello World
-      </main>
-    </div>
-  );
+import { redirect } from "next/navigation";
+
+export default function App() {
+  redirect("/notes");
 }

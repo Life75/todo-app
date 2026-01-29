@@ -39,12 +39,12 @@ export default function RootLayout({
           <div className="flex h-screen w-full bg-background text-foreground overflow-hidden">
             
             {/* 1. Sidebar: Fixed width, full height of the viewport */}
-            <Sidebar className="w-64 h-full shrink-0 border-r border-secondary" />
+            <Sidebar  />
 
             {/* 2. Content Stack: Flex column for Header + Main Page */}
             <div className="flex flex-col flex-1 min-w-0">
               
-              <HeaderBar className="h-16 shrink-0 border-b border-secondary" />
+              <HeaderBar />
 
               {/* 3. Main Content: Takes remaining height and handles scrolling */}
               <main className="flex-1 overflow-y-auto p-6">
