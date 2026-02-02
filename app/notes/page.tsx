@@ -5,7 +5,7 @@ import useIsOnline from "@/hooks/viewmodels/utils/useIsOnline";
 
 
 export default function Notes() {
-    const isOnline = useIsOnline()
+    const { isOnline } = useIsOnline()
 
     return (
         <div>Notes

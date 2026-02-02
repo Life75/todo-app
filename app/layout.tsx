@@ -4,6 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider"; // Import your new wrapper
 import { Sidebar } from '../components/Sidebar';
 import { HeaderBar } from '../components/Headerbar';
+import GlobalToast from "@/components/shared/GlobalToast";
+import { Toaster } from "sonner";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -35,6 +37,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Toaster />
           {/* Main Container: Flex row to put Sidebar next to Content Stack */}
           <div className="flex h-screen w-full bg-background text-foreground overflow-hidden">
             
