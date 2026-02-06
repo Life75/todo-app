@@ -32,6 +32,11 @@ export function Sidebar() {
 
         </div>
       </div>
+
+
+      <div id="workspace">
+        <div>Workspace</div>
+      </div>
     </div>
   );
 }
