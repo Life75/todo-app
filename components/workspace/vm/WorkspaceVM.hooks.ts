@@ -1,13 +1,11 @@
-import { useState } from "react";
+import { useWorkspacesQuery } from "../queries/WorkspaceQueries";
 
 export default function useWorkspaceVM() {
-    //todo get the workspace correlated with the user 
+  const { data: workspaceItems = [], isLoading, error } = useWorkspacesQuery();
 
-    const [workspaceItems, setWorkspaceItems] = useState([])
-
-
-
-    return {
-        workspaceItems
-    }
+  return {
+    workspaceItems,
+    isLoading,
+    error,
+  };
 }
