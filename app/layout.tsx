@@ -50,9 +50,9 @@ export default function RootLayout({
             <input id="sidebar-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col">
               {/* Navbar */}
-              <nav className="navbar w-full bg-base-300">
+              <nav className="navbar w-full border-b-[0.5px]">
                <SidebarToggle/>
-                <div className="px-4 text-lg font-semibold">Headbar</div>
+                <div className="px-4 text-lg font-semibold">Hello World</div>
               </nav>
               {/* Page content */}
               <main className="flex-1 overflow-y-auto p-6">

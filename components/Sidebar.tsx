@@ -6,10 +6,10 @@ import { useSidebarStore } from "@/stores/useSidebarStore";
 
 export function Sidebar() {
   const { isCollapsed, toggle } = useSidebarStore();
-
+    //Make the below pieces into a component to be reused for the simple styling 
   return (
     <div
-      className={`flex min-h-full flex-col bg-base-200 p-4 transition-all duration-300 ${
+      className={`flex min-h-full flex-col bg-base-100 dark:bg-[#181818] p-2 transition-all duration-300 ${
         isCollapsed ? "w-16" : "w-64"
       }`}
     >
@@ -39,9 +39,9 @@ export function Sidebar() {
           isCollapsed ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
-        <ul className="flex flex-col gap-y-3 w-full">
-            <li>
-              <button className="flex items-center gap-x-3">
+        <ul className="flex flex-col  w-full text-sm">
+            <li className="hover:dark:bg-[#242424] py-2 rounded cursor-pointer">
+              <button className="flex items-center gap-x-2 px-2 ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -58,8 +58,8 @@ export function Sidebar() {
                 <span>Templates</span>
               </button>
             </li>
-            <li>
-              <button className="flex items-center gap-3">
+            <li className="hover:dark:bg-[#242424] py-2 rounded cursor-pointer">
+              <button className="flex items-center gap-2 px-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -73,8 +73,8 @@ export function Sidebar() {
                 <span>Import</span>
               </button>
             </li>
-            <li>
-              <button className="flex items-center gap-3">
+            <li className="hover:dark:bg-[#242424] py-2 rounded cursor-pointer">
+              <button className="flex items-center gap-2 px-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
