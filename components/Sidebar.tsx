@@ -9,7 +9,7 @@ export function Sidebar() {
     //Make the below pieces into a component to be reused for the simple styling 
   return (
     <div
-      className={`flex min-h-full flex-col bg-base-100 dark:bg-[#181818] p-2 transition-all duration-300 ${
+      className={`flex min-h-full flex-col bg-base-100 dark:bg-[#181818] border-r p-2 transition-all duration-300 ${
         isCollapsed ? "w-16" : "w-64"
       }`}
     >

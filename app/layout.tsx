@@ -46,13 +46,13 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Toaster />
-          <div className="drawer lg:drawer-open">
+          <div className="drawer lg:drawer-open"> 
             <input id="sidebar-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col">
               {/* Navbar */}
               <nav className="navbar w-full border-b-[0.5px]">
                <SidebarToggle/>
-                <div className="px-4 text-lg font-semibold">Hello World</div>
+                <div className="px-4 text-lg font-semibold">All Notes (template) </div>
               </nav>
               {/* Page content */}
               <main className="flex-1 overflow-y-auto p-6">
