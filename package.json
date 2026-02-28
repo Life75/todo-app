@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.20",
+    "@tiptap/react": "^3.20.0",
+    "@tiptap/starter-kit": "^3.20.0",
+    "@uiw/react-md-editor": "^4.0.11",
     "axios": "^1.13.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

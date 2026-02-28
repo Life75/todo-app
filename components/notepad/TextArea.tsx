@@ -1,32 +1,22 @@
 "use client";
 
+import { useEditor, EditorContent } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+
 export function TextArea() {
+  const editor = useEditor({
+    extensions: [StarterKit],
+    content: "",
+    immediatelyRender: false
+  });
+
   return (
-      <textarea
-        placeholder="Type here..."
-        rows={20}
-        spellCheck={false}
-        className="
-          w-full
-          bg-transparent
-          border-none
-          outline-none
-          resize-none
-          overflow-hidden
-          hover-none
-
-          px-0 py-0
-          text-base
-          leading-relaxed
-          caret-primary
-
-        "
-        onInput={(e) => {
-          const el = e.currentTarget
-          el.style.height = "auto"
-          el.style.height = `${el.scrollHeight}px`
-        }}
-      />
+    <div className="
+  border rounded-lg p-4 min-h-[300px]
+  focus-within:border-primary
+  [&_.ProseMirror]:outline-none
+">
+      <EditorContent editor={editor} />
+    </div>
   )
 }
-
