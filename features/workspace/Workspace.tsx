@@ -1,4 +1,4 @@
-import useWorkspaceVM from "@/components/workspace/vm/WorkspaceVM.hooks";
+import useWorkspaceVM from "@/features/workspace/vm/WorkspaceVM.hooks";
 import { Skeleton } from "@/components/ui/skeleton";
 export default function Workspace() {
   const { workspaceItems, isLoading } = useWorkspaceVM();

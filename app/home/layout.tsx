@@ -5,9 +5,6 @@ export default function NotesLayout({
 }) {
   return (
     <section className="h-full flex flex-col">
-    
-
-
       <div className="flex-1">
         {children}
       </div>

@@ -5,10 +5,7 @@ import NoteCard from "./NoteCard";
 export default function Notes() {
   return (
     <div id="notes-view" className="flex flex-col  md:flex-row  gap-4">
-      <NoteCard id="1" />
-      <NoteCard id="2" />
-      <NoteCard id="3" />
-      <NoteCard id="4" />
+
     </div>
   );
 }
