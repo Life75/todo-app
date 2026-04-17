@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import { Result, ok, fail } from '../models/Result';
 
-
+//We're going to only use fetch in the base repository
 export abstract class BaseRepository {
   protected api: AxiosInstance;
 

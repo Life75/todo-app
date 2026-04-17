@@ -58,7 +58,7 @@ export function Sidebar() {
           </ul>
         </div>
         <div className="mt-6">
-          <Workspace />
+          { !isCollapsed && <Workspace /> } 
         </div>
       </div>
     </div>
