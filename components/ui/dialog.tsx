@@ -72,8 +72,8 @@ function DialogContent({
       {/* MODAL */}
       <DialogPrimitive.Content
         data-slot="dialog-content"
-       className={cn(
-  `
+        className={cn(
+          `
   fixed top-[50%] left-[50%] z-50 grid w-full
   max-w-[calc(100%-2rem)] sm:max-w-lg
   translate-x-[-50%] translate-y-[-50%]
@@ -87,8 +87,8 @@ function DialogContent({
 
   transition-all duration-200 ease-out
   `,
-  className
-)}
+          className
+        )}
         {...props}
       >
         {children}

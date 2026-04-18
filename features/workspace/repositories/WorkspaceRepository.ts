@@ -4,10 +4,7 @@ import { BaseRepository } from '../../../infrastructure/BaseRepository';
 import { Result, ok } from '../../../models/Result';
 
 export default class WorkspaceRepository extends BaseRepository {
-  constructor() {
-    // You can point this to a specific microservice or base path
-    super("/api/workspaces");
-  }
+
   async getWorkspaces(): Promise<Result<WorkspaceResponse[]>> {
     // Simulate a 1-second network delay
     return new Promise((resolve) => {

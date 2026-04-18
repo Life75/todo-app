@@ -1,0 +1,13 @@
+
+> todo-app@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.1 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://100.76.88.196:3000
+
+✓ Starting...
+✓ Ready in 1083ms
+ GET /home 200 in 369ms (compile: 210ms, render: 159ms)
+ GET /home 200 in 33ms (compile: 4ms, render: 29ms)
+ GET /home 200 in 48ms (compile: 4ms, render: 44ms)
