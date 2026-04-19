@@ -7,7 +7,8 @@ export class LocalWorkspaceDataSource {
 
   async upsert(workspace: WorkspaceEntity): Promise<string> {
     // .put() handles both create and update
-    return await db.workspaces.put(workspace);
+    return await db.workspaces.add(workspace)
+   // return await db.workspaces.put(workspace);
   }
 
   async delete(id: string): Promise<void> {

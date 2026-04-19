@@ -13,10 +13,10 @@ export function useWorkspacesQuery() {
     queryKey: workspaceKeys.all,
     queryFn: async () => {
       const result = await workspaceService.getWorkspaces();
-      if (!result.ok) {
+      if (!result.success) {
         throw result.error;
       }
-      return result.value;
+      return result.data;
     },
   });
 }

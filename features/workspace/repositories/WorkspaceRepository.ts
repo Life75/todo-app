@@ -10,7 +10,7 @@ export default class WorkspaceRepository extends BaseRepository {
   async getWorkspaces(): Promise<Result<WorkspaceResponse[]>> {
     try {
       const data = await this.local.getAll();
-
+      console.log(data)
       // If DB is empty, you might want to fetch from API once 
       // and "seed" the local DB.
       if (data.length === 0) {
@@ -40,14 +40,14 @@ export default class WorkspaceRepository extends BaseRepository {
     try {
       const newEntry: WorkspaceEntity = {
         name,
-        icon: "📁",
+        icon: "",
         synced: 0,
         updatedAt: Date.now()
       };
 
       // 1. Save to Dexie
       const id = await this.local.upsert(newEntry);
-
+      console.log(id)
       // 2. Map the Entity to the Workspace Response
       // We manually add 'isSelected' here to satisfy the Workspace interface
       const workspace: WorkspaceResponse = {

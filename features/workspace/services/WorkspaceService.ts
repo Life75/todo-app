@@ -1,6 +1,7 @@
 import WorkspaceRepository from '../repositories/WorkspaceRepository';
 import WorkspaceResponse from '../../../models/responses/WorkspaceResponse';
 import { Result } from '../../../models/types/Result';
+import Workspace from '../models/Workspace';
 export default class WorkspaceService {
   private repository: WorkspaceRepository;
 
@@ -13,7 +14,7 @@ export default class WorkspaceService {
     return result;
   }
 
-  async createWorkspace(name: string): Promise<Result<void>> {
+  async createWorkspace(name: string): Promise<Result<Workspace>> {
     const result = await this.repository.createWorkspace(name)
     return result 
   }

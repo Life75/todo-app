@@ -18,6 +18,11 @@ export default function Workspace() {
     setOpen(true)
   }
 
+  function onCreateAction(name: string) {
+    createWorkspace(name)
+    setOpen(false)
+  }
+
 
 
   return (
@@ -56,7 +61,7 @@ export default function Workspace() {
             <DialogTitle>Create Workspace</DialogTitle>
           </DialogHeader>
 
-          <CreateWorkspaceForm onCreateWorkspace={createWorkspace} >
+          <CreateWorkspaceForm onCreateWorkspace={ onCreateAction } >
             
           </CreateWorkspaceForm>
         </DialogContent>
