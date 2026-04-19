@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/dialog";
 import { useState } from "react";
 import CreateWorkspaceForm from "./ui/CreateWorkspaceForm";
-import { Button } from "@/components/ui/button";
 export default function Workspace() {
   const { workspaceItems, isLoading, createWorkspace } = useWorkspaceVM();
   const [open, setOpen] = useState(false)
@@ -19,9 +18,7 @@ export default function Workspace() {
     setOpen(true)
   }
 
-  function onCreateWorkspace() {
-    createWorkspace()
-  }
+
 
   return (
     <>
@@ -59,8 +56,8 @@ export default function Workspace() {
             <DialogTitle>Create Workspace</DialogTitle>
           </DialogHeader>
 
-          <CreateWorkspaceForm>
-            <Button onClick={ () => onCreateWorkspace}/>
+          <CreateWorkspaceForm onCreateWorkspace={createWorkspace} >
+            
           </CreateWorkspaceForm>
         </DialogContent>
       </Dialog>

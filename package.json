@@ -17,6 +17,7 @@
     "clsx": "^2.1.1",
     "daisyui": "^5.5.18",
     "dexie": "^4.4.2",
+    "dexie-react-hooks": "^4.4.0",
     "enhanced-resolve": "^5.20.1",
     "express": "^5.2.1",
     "lucide-react": "^0.563.0",

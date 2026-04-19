@@ -1,4 +1,4 @@
-import Selectable from './Selectable';
+import Selectable from '../../../models/Selectable';
 
 export default interface Workspace extends Selectable {
     id: string,

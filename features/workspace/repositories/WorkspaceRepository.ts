@@ -1,51 +1,65 @@
-
-import WorkspaceResponse from "../../../models/responses/WorkspaceResponse";
-import { BaseRepository } from '../../../infrastructure/BaseRepository';
-import { Result, ok } from '../../../models/Result';
-
+import { BaseRepository } from "@/infrastructure/BaseRepository";
+import WorkspaceResponse from "@/models/responses/WorkspaceResponse";
+import { ErrorType } from "@/models/types/ErrorTypes";
+import { fail, ok, Result } from "@/models/types/Result";
+import { LocalWorkspaceDataSource } from "./LocalWorkspaceDataSource";
+import { WorkspaceEntity } from "@/infrastructure/local-db/db";
 export default class WorkspaceRepository extends BaseRepository {
+  private local = new LocalWorkspaceDataSource();
 
   async getWorkspaces(): Promise<Result<WorkspaceResponse[]>> {
-    // Simulate a 1-second network delay
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const mockData: WorkspaceResponse[] = [
-          {
-            id: "1",
-            name: "Personal Notes",
-            icon: "📓",
-            isSelected: true,
-          },
-          {
-            id: "2",
-            name: "Work Projects",
-            icon: "💼",
-            isSelected: false,
-          },
-          {
-            id: "3",
-            name: "Startup Idea",
-            icon: "🚀",
-            isSelected: false,
-          },
-        ];
+    try {
+      const data = await this.local.getAll();
 
-        // Wrap the successful data in our 'ok' Result helper
-        resolve(ok(mockData));
-      }, 1000);
-    });
-  }
-  /*
-  async createWorkspace(data: Partial<WorkspaceResponse>): Promise<Result<WorkspaceResponse>> {
-    return this.post<WorkspaceResponse>('/', data);
+      // If DB is empty, you might want to fetch from API once 
+      // and "seed" the local DB.
+      if (data.length === 0) {
+        // const remoteData = await this.remote.fetchAll();
+        // await Promise.all(remoteData.map(w => this.local.upsert(w)));
+      }
+
+      return ok(data.map(this.mapToWorkspace));
+    } catch (e) {
+      return fail(
+        ErrorType.DATABASE_ERROR,
+        "Unable to get workspaces"
+      );
+    }
   }
 
-  async updateWorkspace(id: string, data: Partial<WorkspaceResponse>): Promise<Result<WorkspaceResponse>> {
-    return this.put<WorkspaceResponse>(`/${id}`, data);
+  private mapToWorkspace(entity: WorkspaceEntity): WorkspaceResponse {
+    return {
+      id: entity.id!,
+      name: entity.name,
+      icon: entity.icon,
+      isSelected: false // Or determine this based on global state
+    };
   }
 
-  async deleteWorkspace(id: string): Promise<Result<void>> {
-    return this.delete<void>(`/${id}`);
+  async createWorkspace(name: string): Promise<Result<WorkspaceResponse>> {
+    try {
+      const newEntry: WorkspaceEntity = {
+        name,
+        icon: "📁",
+        synced: 0,
+        updatedAt: Date.now()
+      };
+
+      // 1. Save to Dexie
+      const id = await this.local.upsert(newEntry);
+
+      // 2. Map the Entity to the Workspace Response
+      // We manually add 'isSelected' here to satisfy the Workspace interface
+      const workspace: WorkspaceResponse = {
+        id: id,
+        name: newEntry.name,
+        icon: newEntry.icon,
+        isSelected: false // New workspaces are usually not selected by default
+      };
+
+      return ok(workspace);
+    } catch (e) {
+      return fail(ErrorType.DATABASE_ERROR, "Failed to create workspace");
+    }
   }
-    */
 }
