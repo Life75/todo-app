@@ -1,5 +1,4 @@
-import BaseRequest from "@/models/requests/BaseRequest";
 
-export default interface CreateWorkspaceResponse extends BaseResponse {
+export default interface CreateWorkspaceResponse {
     
 }

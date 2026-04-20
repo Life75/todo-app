@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import WorkspaceService from "../services/WorkspaceService";
 import WorkspaceRepository from "../repositories/WorkspaceRepository";
 
@@ -17,6 +17,26 @@ export function useWorkspacesQuery() {
         throw result.error;
       }
       return result.data;
+    },
+  });
+}
+
+export function useCreateWorkspaceMutation() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (name: string) => {
+      const result = await workspaceService.createWorkspace(name);
+      if (!result.success) {
+        throw result.error;
+      }
+      return result.data;
+    },
+    onSuccess: (newWorkspace) => {
+      queryClient.setQueryData(workspaceKeys.all, (old: any[] = []) => [
+        ...old,
+        newWorkspace,
+      ]);
     },
   });
 }

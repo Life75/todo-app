@@ -1,6 +1,21 @@
 import useWorkspaceVM from "@/features/workspace/vm/WorkspaceVM.hooks";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
+  CreditCardIcon,
+  LogOutIcon,
+  SettingsIcon,
+  UserIcon,
+} from "lucide-react"
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
+import {
   Dialog,
   DialogContent,
   DialogHeader,
@@ -45,10 +60,42 @@ export default function Workspace() {
         ) : (
           <ul className="text-foreground/80 px-1 ">
             {workspaceItems.map((item, index) => (
-              <li className="cursor-pointer hover:dark:bg-[#242424] px-2 h-[44px] flex items-center rounded-lg" key={item.id}>
-                <div>
+              <li className=" group flex flex-row cursor-pointer hover:dark:bg-[#242424] px-2 h-[44px]  items-center rounded-lg" key={item.id}>
+                <div className="grow">
                   {item.name}
                 </div>
+
+
+
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <div className="flex md:opacity-0 md:group-hover:opacity-100 md:transition-opacity">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                        <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
+                      </svg>
+                    </div>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuItem>
+                      <UserIcon />
+                      Profile
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <CreditCardIcon />
+                      Billing
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <SettingsIcon />
+                      Settings
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem variant="destructive">
+                      <LogOutIcon />
+                      Log out
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
               </li>
             ))}
           </ul>
@@ -61,8 +108,8 @@ export default function Workspace() {
             <DialogTitle>Create Workspace</DialogTitle>
           </DialogHeader>
 
-          <CreateWorkspaceForm onCreateWorkspace={ onCreateAction } >
-            
+          <CreateWorkspaceForm onCreateWorkspace={onCreateAction} >
+
           </CreateWorkspaceForm>
         </DialogContent>
       </Dialog>

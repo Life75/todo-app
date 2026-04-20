@@ -47,7 +47,6 @@ export default class WorkspaceRepository extends BaseRepository {
 
       // 1. Save to Dexie
       const id = await this.local.upsert(newEntry);
-      console.log(id)
       // 2. Map the Entity to the Workspace Response
       // We manually add 'isSelected' here to satisfy the Workspace interface
       const workspace: WorkspaceResponse = {
