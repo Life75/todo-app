@@ -4,6 +4,7 @@ import { ErrorType } from "@/models/types/ErrorTypes";
 import { fail, ok, Result } from "@/models/types/Result";
 import { LocalWorkspaceDataSource } from "./LocalWorkspaceDataSource";
 import { WorkspaceEntity } from "@/infrastructure/local-db/db";
+import Workspace from "../models/Workspace";
 export default class WorkspaceRepository extends BaseRepository {
   private local = new LocalWorkspaceDataSource();
 
@@ -60,5 +61,14 @@ export default class WorkspaceRepository extends BaseRepository {
     } catch (e) {
       return fail(ErrorType.DATABASE_ERROR, "Failed to create workspace");
     }
+  }
+
+  async deleteWorkspace(id: string): Promise<Result<string>> {
+
+    await this.local.delete(id)
+    
+
+
+    return ok(id)
   }
 }

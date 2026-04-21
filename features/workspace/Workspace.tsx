@@ -28,8 +28,9 @@ import {
 } from "@/components/ui/dialog";
 import { useState } from "react";
 import CreateWorkspaceForm from "./ui/CreateWorkspaceForm";
+import EditWorkspaceForm from "./ui/EditWorkspaceForm";
 export default function Workspace() {
-  const { workspaceItems, isLoading, createWorkspace } = useWorkspaceVM();
+  const { workspaceItems, isLoading, createWorkspace, deleteWorkspace } = useWorkspaceVM();
   const [open, setOpen] = useState(false)
 
   function showCreateWorkspaceModal() {
@@ -42,12 +43,13 @@ export default function Workspace() {
     setOpen(false)
   }
 
-  function onDeleteAction(id: number) {
-    
+  function onDeleteAction(id: string) {
+    console.log("deleting workspace")
+    deleteWorkspace(id)
   }
   //Make menu into its own React component. Would be best and easier development need with passing in actions down
 
-
+//We'll need to fix the edit form to allow for edits 
   return (
     <>
       <div id="workspace" className="flex flex-col space-y-2">
@@ -84,11 +86,11 @@ export default function Workspace() {
                     </div>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem >
                       <Pencil />
                       Edit
                     </DropdownMenuItem>
-                    <DropdownMenuItem variant="destructive">
+                    <DropdownMenuItem variant="destructive" onClick={()  => onDeleteAction(item.id)}>
                       <Trash2 />
                       Delete
                     </DropdownMenuItem>
@@ -108,7 +110,7 @@ export default function Workspace() {
           </DialogHeader>
 
           <CreateWorkspaceForm onCreateWorkspace={onCreateAction} >
-
+          <EditWorkspaceForm workspaceItem={item} onConfirm={onEditAction}></EditWorkspaceForm>
           </CreateWorkspaceForm>
         </DialogContent>
       </Dialog>

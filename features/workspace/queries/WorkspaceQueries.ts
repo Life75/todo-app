@@ -1,6 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import WorkspaceService from "../services/WorkspaceService";
 import WorkspaceRepository from "../repositories/WorkspaceRepository";
+import Workspace from "../models/Workspace";
+import { Result } from "@/models/types/Result";
 
 const workspaceService = new WorkspaceService(new WorkspaceRepository());
 
@@ -37,6 +39,23 @@ export function useCreateWorkspaceMutation() {
         ...old,
         newWorkspace,
       ]);
+    },
+  });
+}
+
+export function useDeleteWorkspaceMutation() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const result = await workspaceService.deleteWorkspace(id);
+      if (!result.success) {
+        throw result.error;
+      }
+      return result;
+    },
+    onSuccess: (result: Result<string>) => {
+      queryClient.setQueryData(workspaceKeys.all, (old: Workspace[] = []) => old.filter((e) => e.id !== result.data));
     },
   });
 }

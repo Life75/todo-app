@@ -19,7 +19,7 @@ export default class WorkspaceService {
     return result 
   }
 
-  async deleteWorkspace(id: number): Promise<Result<void>> {
-    //return await this.repository.deleteWorkspace(id)
+  async deleteWorkspace(id: string): Promise<Result<string>> {
+    return await this.repository.deleteWorkspace(id)
   }
 }
