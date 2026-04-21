@@ -3,7 +3,11 @@ import { Skeleton } from "@/components/ui/skeleton";
 import {
   CreditCardIcon,
   LogOutIcon,
+  Pencil,
   SettingsIcon,
+  Trash,
+  Trash2,
+  TrashIcon,
   UserIcon,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -38,6 +42,10 @@ export default function Workspace() {
     setOpen(false)
   }
 
+  function onDeleteAction(id: number) {
+    
+  }
+  //Make menu into its own React component. Would be best and easier development need with passing in actions down
 
 
   return (
@@ -77,21 +85,12 @@ export default function Workspace() {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
                     <DropdownMenuItem>
-                      <UserIcon />
-                      Profile
+                      <Pencil />
+                      Edit
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <CreditCardIcon />
-                      Billing
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <SettingsIcon />
-                      Settings
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
                     <DropdownMenuItem variant="destructive">
-                      <LogOutIcon />
-                      Log out
+                      <Trash2 />
+                      Delete
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
