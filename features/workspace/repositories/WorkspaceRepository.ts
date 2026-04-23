@@ -71,4 +71,20 @@ export default class WorkspaceRepository extends BaseRepository {
 
     return ok(id)
   }
+
+    async editWorkspace(workspace: Workspace): Promise<Result<Workspace>> {
+      const updateEntry: WorkspaceEntity = {
+        name: workspace.name,
+        id: workspace.id, 
+        icon: workspace.icon ?? ``,
+        synced: 0,
+        updatedAt: Date.now()
+        
+      };
+      const updated = await this.local.update(updateEntry)
+    
+
+
+    return ok(this.mapToWorkspace(updated))
+  }
 }

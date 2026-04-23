@@ -10,7 +10,7 @@ import Workspace from "../models/Workspace";
 
 type EditWorkspaceFormProps = {
   workspaceItem: Workspace;
-  onConfirm: (name: string) => void;
+  onConfirm: (workspace: Workspace) => void;
 };
 
 export default function EditWorkspaceForm({
@@ -33,7 +33,7 @@ export default function EditWorkspaceForm({
       </Field>
 
       <Button
-        onClick={() => onConfirm(newWorkspaceName)}
+        onClick={() => onConfirm({...workspaceItem, name: newWorkspaceName})}
         disabled={workspaceItem.name === newWorkspaceName}
       >
         Save

@@ -12,7 +12,12 @@ export class LocalWorkspaceDataSource {
   }
 
   async delete(id: string): Promise<void> {
-    await db.workspaces.delete(id);
+    return await db.workspaces.delete(id);
+  }
+
+  async update(workspace: WorkspaceEntity): Promise<WorkspaceEntity> {
+    await db.workspaces.put(workspace)
+    return {...workspace}
   }
 
   async getUnsynced(): Promise<WorkspaceEntity[]> {

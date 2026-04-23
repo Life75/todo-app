@@ -29,10 +29,12 @@ import {
 import { useState } from "react";
 import CreateWorkspaceForm from "./ui/CreateWorkspaceForm";
 import EditWorkspaceForm from "./ui/EditWorkspaceForm";
+import Workspace from "./models/Workspace";
+import Workspace from "./models/Workspace";
 export default function Workspace() {
-  const { workspaceItems, isLoading, createWorkspace, deleteWorkspace } = useWorkspaceVM();
+  const { workspaceItems, isLoading, createWorkspace, deleteWorkspace, editWorkspace } = useWorkspaceVM();
   const [open, setOpen] = useState(false)
-
+  const [selectedWorkspace, setSelectedWorkspace] = useState<Workspace>()
   function showCreateWorkspaceModal() {
     //displays pop up modal to create workspace
     setOpen(true)
@@ -47,9 +49,19 @@ export default function Workspace() {
     console.log("deleting workspace")
     deleteWorkspace(id)
   }
+
+  function onEditAction(workspace: Workspace) {
+    editWorkspace(workspace)
+    setOpen(false)
+  }
+
+  function editWorkspaceModal(workspace: Workspace) {
+    setSelectedWorkspace(workspace)
+    setOpen(true)
+  }
   //Make menu into its own React component. Would be best and easier development need with passing in actions down
 
-//We'll need to fix the edit form to allow for edits 
+  //We'll need to fix the edit form to allow for edits 
   return (
     <>
       <div id="workspace" className="flex flex-col space-y-2">
@@ -86,11 +98,11 @@ export default function Workspace() {
                     </div>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
-                    <DropdownMenuItem >
+                    <DropdownMenuItem onClick={() => editWorkspaceModal(item)}>
                       <Pencil />
                       Edit
                     </DropdownMenuItem>
-                    <DropdownMenuItem variant="destructive" onClick={()  => onDeleteAction(item.id)}>
+                    <DropdownMenuItem variant="destructive" onClick={() => onDeleteAction(item.id)}>
                       <Trash2 />
                       Delete
                     </DropdownMenuItem>
@@ -105,13 +117,27 @@ export default function Workspace() {
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Create Workspace</DialogTitle>
-          </DialogHeader>
+          {
+            selectedWorkspace ? <>
+              <DialogHeader>
+                <DialogTitle>Edit Workspace</DialogTitle>
+              </DialogHeader>
+              <EditWorkspaceForm workspaceItem={selectedWorkspace} onConfirm={onEditAction}></EditWorkspaceForm>
+            </>
+              :
+              <>
+                <DialogHeader>
+                  <DialogTitle>Create Workspace</DialogTitle>
+                </DialogHeader>
 
-          <CreateWorkspaceForm onCreateWorkspace={onCreateAction} >
-          <EditWorkspaceForm workspaceItem={item} onConfirm={onEditAction}></EditWorkspaceForm>
-          </CreateWorkspaceForm>
+                <CreateWorkspaceForm onCreateWorkspace={onCreateAction} >
+                </CreateWorkspaceForm>
+              </>
+          }
+
+
+
+
         </DialogContent>
       </Dialog>
     </>
