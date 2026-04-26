@@ -1,3 +1,5 @@
+"use client";
+
 import useWorkspaceVM from "@/features/workspace/vm/WorkspaceVM.hooks";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
