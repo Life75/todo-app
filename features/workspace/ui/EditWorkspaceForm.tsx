@@ -29,12 +29,14 @@ export default function EditWorkspaceForm({
           id="input-demo-api-key"
           value={newWorkspaceName}
           onChange={(e) => setNewWorkspaceName(e.target.value)}
+          onKeyDown={(e) => {
+            if(e.key === "Enter" && workspaceItem.name !== "") onConfirm({...workspaceItem, name: newWorkspaceName})
+          }}
         />
       </Field>
 
       <Button
         onClick={() => onConfirm({...workspaceItem, name: newWorkspaceName})}
-        disabled={workspaceItem.name === newWorkspaceName}
       >
         Save
       </Button>

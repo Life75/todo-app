@@ -19,7 +19,11 @@ export default function CreateWorkspaceForm({ onCreateWorkspace }: CreateWorkspa
     <>
       <Field>
         <FieldLabel htmlFor="input-demo-api-key">Name</FieldLabel>
-        <Input id="input-demo-api-key" value={name} onChange={(e) => setName(e.target.value)} />
+        <Input id="input-demo-api-key" value={name} onChange={(e) => setName(e.target.value)} 
+          onKeyDown={(e) => {
+            if(e.key === "Enter" && name !== "") onCreateWorkspace(name)
+          }}
+        />
 
       </Field>
       <Button onClick={() => onCreateWorkspace(name)} disabled={name === ""} >
