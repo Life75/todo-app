@@ -2,12 +2,12 @@ import WorkspacePageClient from "./WorkspacePageClient";
 
 type WorkspacePageProps = {
   params: Promise<{
-    id: string;
+    workspaceId: string;
   }>;
 };
 
 export default async function WorkspacePage({ params }: WorkspacePageProps) {
-  const { id } = await params;
+  const { workspaceId } = await params;
 
-  return <WorkspacePageClient workspaceId={id} />;
+  return <WorkspacePageClient workspaceId={workspaceId} />;
 }

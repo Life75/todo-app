@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 import NotesList, { type NoteListItem } from "@/components/notes_list/NotesList";
 import { useWorkspacesQuery } from "@/features/workspace/queries/WorkspaceQueries";
+import NoteContentArea from "@/features/notes/ui/NoteContentArea";
+import { useIsMobile } from "@/hooks/useIsMobile";
+import { useRouter } from "next/navigation";
 
 type WorkspacePageClientProps = {
   workspaceId: string;
@@ -16,7 +19,16 @@ export default function WorkspacePageClient({
   const workspace = workspaceItems.find(
     (item) => String(item.id) === workspaceId
   );
+  const isMobile = useIsMobile()
+  const router = useRouter()
+  function onNoteSelectionAction(note: NoteListItem) {
+    if(isMobile) {
+      router.push(`/workspace/${workspaceId}/note/${note.id}`)
+    }
+    setSelectedNote(note)
 
+  //  if(isMobile)
+  }
   useEffect(() => {
     setSelectedNote(null);
   }, [workspaceId]);
@@ -80,21 +92,7 @@ export default function WorkspacePageClient({
 
         <div className="flex-1 overflow-y-auto px-6 py-5">
           {selectedNote ? (
-            <div className="space-y-4">
-              <p className="text-sm text-foreground/55">
-                Last updated: {selectedNote.updatedAt}
-              </p>
-              <div className="rounded-2xl border bg-card p-6">
-                <p className="leading-7 text-foreground/80">
-                  {selectedNote.preview}
-                </p>
-                <p className="mt-4 leading-7 text-foreground/65">
-                  This is the note content pane. Later you can swap this dummy
-                  content for your editor component and load the full note body
-                  from your real viewmodel.
-                </p>
-              </div>
-            </div>
+            <NoteContentArea note={selectedNote} />
           ) : (
             <div className="flex h-full items-center justify-center">
               <div className="max-w-md rounded-2xl border border-dashed px-8 py-10 text-center">
