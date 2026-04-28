@@ -14,7 +14,7 @@ type NotesListProps = {
   onSelectNote: (note: NoteListItem) => void;
 };
 
-function useNotesListVM(workspaceId: string) {
+export function useNotesListVM(workspaceId: string) {
   const allNotes: NoteListItem[] = [
     {
       id: "n-1",

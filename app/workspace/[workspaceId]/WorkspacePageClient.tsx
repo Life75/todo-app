@@ -24,9 +24,10 @@ export default function WorkspacePageClient({
   function onNoteSelectionAction(note: NoteListItem) {
     if(isMobile) {
       router.push(`/workspace/${workspaceId}/note/${note.id}`)
+    } 
+    else {
+      setSelectedNote(note)
     }
-    setSelectedNote(note)
-
   //  if(isMobile)
   }
   useEffect(() => {
@@ -75,7 +76,7 @@ export default function WorkspacePageClient({
           <NotesList
             workspaceId={workspaceId}
             selectedNoteId={selectedNote?.id}
-            onSelectNote={setSelectedNote}
+            onSelectNote={onNoteSelectionAction}
           />
         </div>
       </aside>
