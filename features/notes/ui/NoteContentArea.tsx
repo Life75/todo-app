@@ -1,4 +1,5 @@
 import { NoteListItem } from "@/components/notes_list/NotesList";
+import SlateEditor from "@/components/ui/SlateEditor";
 
 type NoteContentAreaProps = {
     note: NoteListItem
@@ -15,10 +16,8 @@ export default function NoteContentArea({ note }: NoteContentAreaProps) {
                 <p className="leading-7 text-foreground/80">
                     {note.preview}
                 </p>
-                <p className="mt-4 leading-7 text-foreground/65">
-                    This is the note content pane. Later you can swap this dummy
-                    content for your editor component and load the full note body
-                    from your real viewmodel.
+                <p className="mt-4 leading-7 text-foreground/90">
+                    <SlateEditor/>
                 </p>
             </div>
         </div>
