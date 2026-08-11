@@ -10,9 +10,10 @@ export default class NotesService {
 
     //create update delete, get, getall, 
     createNote() {
-
+        
     }
 
+    //needs to be a subscription so it can recieve any possible updates 
     updateNote() {
 
     }
