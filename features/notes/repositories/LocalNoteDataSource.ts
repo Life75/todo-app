@@ -1,19 +1,20 @@
-import { AppDatabase, NoteEntity } from "@/infrastructure/local-db/db";
+import { AppDatabase } from "@/infrastructure/local-db/db";
 import DataSource from "@/infrastructure/models/DataSource";
+import NoteEntity from "../models/dtos/NoteEntity";
 //NEED TO CREATE SHARED INTERFACE 
-export class LocalNoteDataSource implements DataSource {
+export class LocalNoteDataSource implements DataSource<NoteEntity> {
     private db: AppDatabase
 
     constructor(db: AppDatabase) {
         this.db = db 
     }
 
-    async create(note: NoteEntity) {
+    async create(note: NoteEntity): Promise<string> {
         return await this.db.notes.add(note)
     }
 
     async update(note: NoteEntity): Promise<NoteEntity> {
-        return await this.db.notes.put(note)
+        await this.db.notes.put(note)
         return {...note}
     }
 

@@ -1,5 +1,6 @@
-import { WorkspaceEntity } from "@/infrastructure/local-db/db";
+
 import { db } from "@/infrastructure/local-db/db";
+import WorkspaceEntity from "../models/dtos/WorkspaceEntity";
 export class LocalWorkspaceDataSource {
   async getAll(): Promise<WorkspaceEntity[]> {
     return await db.workspaces.toArray();

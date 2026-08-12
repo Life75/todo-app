@@ -3,7 +3,7 @@ import WorkspaceResponse from "@/models/responses/WorkspaceResponse";
 import { ErrorType } from "@/models/types/ErrorTypes";
 import { fail, ok, Result } from "@/models/types/Result";
 import { LocalWorkspaceDataSource } from "./LocalWorkspaceDataSource";
-import { WorkspaceEntity } from "@/infrastructure/local-db/db";
+import WorkspaceEntity from "../models/dtos/WorkspaceEntity";
 import Workspace from "../models/Workspace";
 export default class WorkspaceRepository extends BaseRepository {
   private local = new LocalWorkspaceDataSource();

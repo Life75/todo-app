@@ -1,21 +1,6 @@
+import NoteEntity from '@/features/notes/models/dtos/NoteEntity';
+import WorkspaceEntity from '@/features/workspace/models/dtos/WorkspaceEntity';
 import Dexie, { Table } from 'dexie';
-
-export interface WorkspaceEntity {
-  id?: string; // Dexie can auto-gen or you can use UUIDs
-  name: string;
-  icon: string;
-  synced: number; // 0 for unsynced, 1 for synced
-  updatedAt: number;
-}
-
-export interface NoteEntity {
-  id?: string;        // UUID recommended
-  workspaceId: string; // Foreign Key
-  title: string;
-  content: string;
-  synced: number;     // 0 = pending, 1 = saved to cloud
-  updatedAt: number;
-}
 
 export class AppDatabase extends Dexie {
   workspaces!: Table<WorkspaceEntity>;
@@ -32,3 +17,4 @@ export class AppDatabase extends Dexie {
 }
 
 export const db = new AppDatabase();
+

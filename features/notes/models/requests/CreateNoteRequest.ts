@@ -1,5 +1,5 @@
 export default interface CreateNoteRequest {
-    workspaceId: number
+    workspaceId: string
     title: string 
     content: string 
     updatedAt: number 
