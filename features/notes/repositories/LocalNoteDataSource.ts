@@ -1,25 +1,49 @@
 import { AppDatabase } from "@/infrastructure/local-db/db";
-import DataSource from "@/infrastructure/models/DataSource";
+import NoteContentEntity from "../models/dtos/NoteContentEntity";
 import NoteEntity from "../models/dtos/NoteEntity";
-//NEED TO CREATE SHARED INTERFACE 
-export class LocalNoteDataSource implements DataSource<NoteEntity> {
+
+export class LocalNoteDataSource {
     private db: AppDatabase
 
     constructor(db: AppDatabase) {
-        this.db = db 
+        this.db = db
     }
 
-    async create(note: NoteEntity): Promise<string> {
+    async createNote(note: NoteEntity): Promise<string> {
         return await this.db.notes.add(note)
     }
 
-    async update(note: NoteEntity): Promise<NoteEntity> {
+    async updateNote(note: NoteEntity): Promise<NoteEntity> {
         await this.db.notes.put(note)
-        return {...note}
+        return { ...note }
     }
 
-    async getAll(): Promise<NoteEntity[]> {
-        return await this.db.notes.toArray()
+    async deleteNote(id: string): Promise<void> {
+        return await this.db.notes.delete(id)
     }
 
+    async getAllNotes(workspaceId: string): Promise<NoteEntity[]> {
+        return await this.db.notes.where("workspaceId").equals(workspaceId).toArray()
+    }
+
+    async getNote(id: string): Promise<NoteEntity | undefined> {
+        return await this.db.notes.get(id)
+    }
+
+    async createNoteContent(noteContent: NoteContentEntity): Promise<string> {
+        return await this.db.noteContents.add(noteContent)
+    }
+
+    async updateNoteContent(noteContent: NoteContentEntity): Promise<NoteContentEntity> {
+        await this.db.noteContents.put(noteContent)
+        return { ...noteContent }
+    }
+
+    async deleteNoteContent(noteId: string): Promise<void> {
+        await this.db.noteContents.where("noteId").equals(noteId).delete()
+    }
+
+    async getNoteContent(noteId: string): Promise<NoteContentEntity | undefined> {
+        return await this.db.noteContents.where("noteId").equals(noteId).first()
+    }
 }

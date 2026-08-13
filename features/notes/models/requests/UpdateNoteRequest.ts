@@ -1,3 +1,5 @@
 export default interface UpdateNoteRequest {
-    workspaceId: number
+    id: string
+    workspaceId: string
+    title: string
 }

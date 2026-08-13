@@ -1,5 +1,5 @@
-import { NoteEntity } from "@/infrastructure/local-db/db";
+import NoteResponse from "./NoteResponse";
 
 export default interface GetAllNotesResponse {
-    entity: NoteEntity[]
+    notes: NoteResponse[]
 }

@@ -1,7 +1,3 @@
-export default interface CreateNoteResponse {
-    id: string, 
-    workspaceId: string, 
-    title: string,
-    content: string,
-    updatedAt: number
-}
+import NoteResponse from "./NoteResponse";
+
+export default interface CreateNoteResponse extends NoteResponse {}
